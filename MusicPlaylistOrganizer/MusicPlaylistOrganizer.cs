@@ -11,14 +11,19 @@ class MusicPlaylistOrganizer
         Song[] songs = new Song[numberOfSongs];
         for (int i = 0; i < numberOfSongs; i++)
         {
-
+            Console.WriteLine("Song #{0}", i + 1);
             Console.Write("Title: ");
             string Title = Console.ReadLine();
             Console.Write("Artist: ");
             string Artist = Console.ReadLine();
-            Console.Write("Duration: ");
+            Console.Write("Duration (minutes): ");
             string Duration = Console.ReadLine();
-            if (string.IsNullOrEmpty(Artist) && string.IsNullOrEmpty(Duration))
+            if (string.IsNullOrEmpty(Artist) && string.IsNullOrEmpty(Title))
+            {
+                Song inputsong = new Song();
+                songs[i] = inputsong;
+            }
+            else if (string.IsNullOrEmpty(Artist) && string.IsNullOrEmpty(Duration))
             {
                 Song inputsong = new Song(Title);
                 songs[i] = inputsong;
@@ -28,11 +33,7 @@ class MusicPlaylistOrganizer
                 Song inputsong = new Song(Title, Artist);
                 songs[i] = inputsong;
             }
-            else if (string.IsNullOrEmpty(Artist) && string.IsNullOrEmpty(Duration) && string.IsNullOrEmpty(Title))
-            {
-                Song inputsong = new Song();
-                songs[i] = inputsong;
-            }
+         
             else
             {
                 Song inputsong = new Song(Title, Artist, Duration);
